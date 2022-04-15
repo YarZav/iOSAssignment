@@ -28,7 +28,7 @@ targets:
         release:
           DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: test.iOSAssignment
+        PRODUCT_BUNDLE_IDENTIFIER: com.test.iOSAssignment
         TARGETED_DEVICE_FAMILY: 1
         GCC_TREAT_WARNINGS_AS_ERRORS: YES
 

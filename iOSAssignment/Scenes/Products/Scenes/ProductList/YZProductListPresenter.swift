@@ -7,6 +7,7 @@ final class YZProductListPresenter {
   // MARK: - Internal property
 
   weak var view: YZProductListViewProtocol?
+  var products: [YZProduct] = []
 
   // MARK: - Init
 
@@ -28,7 +29,12 @@ final class YZProductListPresenter {
 
 extension YZProductListPresenter: YZProductListPresenterProtocol {
   func viewDidLoad() {
-    let products = interactor.fetchProducts()
-    print(products as Any)
+    let networkModel = interactor.fetchProducts()
+    products = mapper.map(from: networkModel)
+    view?.reloadData()
+  }
+
+  func search(by text: String) {
+    
   }
 }

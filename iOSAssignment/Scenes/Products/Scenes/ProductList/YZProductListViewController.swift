@@ -6,13 +6,14 @@ final class YZProductListViewController: UITabBarController, YZPresenterProtocol
   private lazy var searchBar: UISearchBar = {
     let searchBar = UISearchBar()
     searchBar.sizeToFit()
+    searchBar.tintColor = .black
     searchBar.delegate = self
     return searchBar
   }()
 
   private lazy var tableView: UITableView = {
     UITableView(
-      cells: [UITableViewCell.self],
+      cells: [YZProductCell.self],
       dataSource: self,
       delegate: self,
       allowsSelection: false
@@ -41,11 +42,54 @@ final class YZProductListViewController: UITabBarController, YZPresenterProtocol
     createUI()
     presenter.viewDidLoad()
   }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    let notification = NotificationCenter.default
+    notification.addObserver(
+      self,
+      selector: #selector(keyboardWillShow),
+      name: UIResponder.keyboardWillShowNotification,
+      object: nil
+    )
+    notification.addObserver(
+      self,
+      selector: #selector(keyboardWillHide),
+      name: UIResponder.keyboardWillHideNotification,
+      object: nil
+    )
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+      super.viewWillDisappear(animated)
+      NotificationCenter.default.removeObserver(self)
+  }
+}
+
+// MARK: - Action
+
+extension YZProductListViewController {
+  @objc
+  func keyboardWillShow(notification: Notification) {
+    let userInfoKey = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+    guard let keyboardHeight = (userInfoKey as? NSValue)?.cgRectValue.height else { return }
+    tableView.setBottomInset(keyboardHeight)
+  }
+
+  @objc
+  func keyboardWillHide(notification: Notification) {
+    tableView.setBottomInset(0)
+  }
 }
 
 // MARK: - YZTabBarViewProtocol
 
-extension YZProductListViewController: YZProductListViewProtocol { }
+extension YZProductListViewController: YZProductListViewProtocol {
+  func reloadData() {
+    tableView.reloadData()
+  }
+}
 
 // MARK: - Private
 
@@ -55,6 +99,17 @@ private extension YZProductListViewController {
 
     navigationController?.navigationBar.prefersLargeTitles = false
     navigationItem.largeTitleDisplayMode = .never
+
+    view.addSubview(tableView)
+
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+    ])
   }
 }
 
@@ -65,8 +120,7 @@ extension YZProductListViewController: UISearchBarDelegate {
     searchBar.showsCancelButton = true
   }
 
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-  }
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { }
 
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
@@ -79,11 +133,12 @@ extension YZProductListViewController: UISearchBarDelegate {
 
 extension YZProductListViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    0
+    presenter.products.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell: UITableViewCell = tableView.dequeueCell(indexPath: indexPath)
+    let cell: YZProductCell = tableView.dequeueCell(indexPath: indexPath)
+    cell.product = presenter.products[indexPath.row]
     return cell
   }
 }

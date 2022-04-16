@@ -5,5 +5,5 @@ protocol YZCoordinatorFactoryProtocol {
   ///     - router:  Router for moving in stack of views
   func tabBarCoordinator(
     router: YZRouterProtocol
-  ) -> YZCoordinatorProtocol & YZTabBarCoordinatorOutputProtocol
+  ) -> YZCoordinatorProtocol
 }

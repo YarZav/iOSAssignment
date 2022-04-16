@@ -1,7 +1,7 @@
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder {
   private let window = UIWindow(frame: UIScreen.main.bounds)
 
   private lazy var coordinatorFlow: YZCoordinatorFlow = {
@@ -11,8 +11,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     coordinatorFlow.start()
     return coordinatorFlow
   }()
+}
 
+// MARK: - UIApplicationDelegate
 
+extension AppDelegate: UIApplicationDelegate {
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?

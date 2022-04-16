@@ -1,33 +1,37 @@
-final class YZTabBarCoordinator: YZBaseCoordinator, YZTabBarCoordinatorOutputProtocol {
+import UIKit
+
+final class YZTabBarCoordinator: YZBaseCoordinator {
   // MARK: - Private property
 
   private let factory: YZTabBarViewFactoryProtocol
   private let router: YZRouterProtocol
 
-  // MARK: - Internal property
-
-  var completion: YZCompletion?
+  private lazy var productListCoordinatorFlow: YZProductsCoordinator = {
+    let navigationController = UINavigationController()
+    let router = YZRouter(rootController: navigationController)
+    let coordinatorFlow = YZProductsCoordinator(router: router)
+    coordinatorFlow.start()
+    return coordinatorFlow
+  }()
 
   // MARK: - Init
 
-  /// Init with 'factory', 'router', 'completion'
+  /// Init with 'factory', 'router'
   /// - Parameters:
   ///     router: View routing
   ///     factory: View factory
-  ///     completion: Completion
   /// - Returns: Coordinator flow
   init(
     router: YZRouterProtocol,
-    factory: YZTabBarViewFactoryProtocol = YZTabBarViewFactory(),
-    completion: YZCompletion? = nil
+    factory: YZTabBarViewFactoryProtocol = YZTabBarViewFactory()
   ) {
     self.router = router
     self.factory = factory
-    self.completion = completion
   }
 }
 
 // MARK: - Coordinatable
+
 extension YZTabBarCoordinator: YZCoordinatorProtocol {
   func start() {
     tabBar()
@@ -38,7 +42,7 @@ extension YZTabBarCoordinator: YZCoordinatorProtocol {
 
 private extension YZTabBarCoordinator {
   func tabBar() {
-    let tabBar = factory.tabBar()
+    let tabBar = factory.tabBar(productListCoordinatorFlow: productListCoordinatorFlow)
     router.setRoot(tabBar)
   }
 }

@@ -1,6 +1,8 @@
 protocol YZTabBarViewFactoryProtocol {
   /// Displaying view
   ///
+  /// - Parameters:
+  ///   - productListCoordinatorFlow: Product list coordinator flow
   /// - Returns: View
-  func tabBar() -> YZPresenterProtocol & YZTabBarOutputProtocol
+  func tabBar(productListCoordinatorFlow: YZProductsCoordinator) -> YZPresenterProtocol
 }

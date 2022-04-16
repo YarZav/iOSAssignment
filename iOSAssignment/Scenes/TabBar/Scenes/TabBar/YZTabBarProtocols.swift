@@ -1,8 +1,3 @@
-import UIKit
-
-// OUTPUT
-protocol YZTabBarOutputProtocol { }
-
 // VIEW -> PRESENTER
 protocol YZTabBarPresenterProtocol { }
 

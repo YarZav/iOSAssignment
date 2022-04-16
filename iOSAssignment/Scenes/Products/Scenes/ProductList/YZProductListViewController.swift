@@ -1,6 +1,6 @@
 import UIKit
 
-final class YZProductListViewController: UITabBarController, YZPresenterProtocol {
+final class YZProductListViewController: UIViewController, YZPresenterProtocol {
   // MARK: - Private property
 
   private lazy var searchBar: UISearchBar = {
@@ -96,9 +96,6 @@ extension YZProductListViewController: YZProductListViewProtocol {
 private extension YZProductListViewController {
   func createUI() {
     navigationItem.titleView = searchBar
-
-    navigationController?.navigationBar.prefersLargeTitles = false
-    navigationItem.largeTitleDisplayMode = .never
 
     view.addSubview(tableView)
 

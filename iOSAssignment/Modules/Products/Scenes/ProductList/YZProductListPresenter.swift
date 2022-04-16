@@ -44,4 +44,9 @@ extension YZProductListPresenter: YZProductListPresenterProtocol {
     }
     view?.reloadData()
   }
+
+  func didSort(_ isDesc: Bool) {
+    displayedProducts.sort { isDesc ? $0.price < $1.price : $0.price > $1.price }
+    view?.reloadData()
+  }
 }

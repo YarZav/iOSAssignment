@@ -6,6 +6,7 @@ final class YZProductListViewController: UIViewController, YZPresenterProtocol, 
   private lazy var keyboardManager = YZKeyboardManager()
   private lazy var searchBar = YZSearchBar()
   private lazy var tableView = YZProductTableView()
+  private lazy var headerView = YZProductHeaderView()
 
   // MARK: - Internal property
 
@@ -42,6 +43,7 @@ final class YZProductListViewController: UIViewController, YZPresenterProtocol, 
 extension YZProductListViewController: YZProductListViewProtocol {
   func reloadData() {
     tableView.products = presenter.displayedProducts
+    headerView.products = presenter.displayedProducts
   }
 }
 
@@ -54,11 +56,17 @@ private extension YZProductListViewController {
 
     keyboardManager.delegate = self
     searchBar.editDelegate = self
+    headerView.delegate = self
 
     view.addSubview(tableView)
-    tableView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(headerView)
+    [tableView, headerView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      headerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      headerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+
+      tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
       tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
       tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
@@ -88,5 +96,13 @@ private extension YZProductListViewController {
 extension YZProductListViewController: YZKeyboardManagerDelegate {
   func onChangeHeight(_ height: CGFloat) {
     tableView.setBottomOffset(height)
+  }
+}
+
+// MARK: - YZProductHeaderDelegate
+
+extension YZProductListViewController: YZProductHeaderDelegate {
+  func didSort(_ isDesc: Bool) {
+    presenter.didSort(isDesc)
   }
 }

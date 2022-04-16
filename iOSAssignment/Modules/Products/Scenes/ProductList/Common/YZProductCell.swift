@@ -4,10 +4,6 @@ final class YZProductCell: UITableViewCell {
   // MARK: - Constants
 
   private enum Constants {
-    static let contents: String = "Inhoud:"
-    static let smallMargin: CGFloat = 8
-    static let defaultMargin: CGFloat = 20
-    static let buttonHeight: CGFloat = 44
     static let plusImageName = "plus"
   }
 
@@ -20,7 +16,7 @@ final class YZProductCell: UITableViewCell {
 
   private lazy var addButton: UIButton = {
     UIButton.make(
-      cornerRadius: Constants.buttonHeight / 2.0,
+      cornerRadius: YZConstants.buttonHeight / 2.0,
       image: UIImage(systemName: Constants.plusImageName)?.colored(.white),
       backgroundColor: .systemGreen,
       highlightedColor: .green
@@ -97,41 +93,41 @@ private extension YZProductCell {
     // MARK: - Constraints
 
     NSLayoutConstraint.activate([
-      containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.smallMargin),
-      containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.smallMargin),
-      containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Constants.defaultMargin),
-      containerView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Constants.defaultMargin),
+      containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: YZConstants.smallMargin),
+      containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -YZConstants.smallMargin),
+      containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: YZConstants.defaultMargin),
+      containerView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -YZConstants.defaultMargin),
 
       productImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
       productImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
       productImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
       productImageView.widthAnchor.constraint(equalTo: productImageView.heightAnchor),
 
-      descriptionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: Constants.smallMargin),
+      descriptionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: YZConstants.smallMargin),
       descriptionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-      descriptionView.leftAnchor.constraint(equalTo: productImageView.rightAnchor, constant: Constants.smallMargin),
+      descriptionView.leftAnchor.constraint(equalTo: productImageView.rightAnchor, constant: YZConstants.smallMargin),
 
       containerMiddleView.topAnchor.constraint(equalTo: containerView.topAnchor),
       containerMiddleView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-      containerMiddleView.leftAnchor.constraint(equalTo: descriptionView.rightAnchor, constant: Constants.smallMargin),
+      containerMiddleView.leftAnchor.constraint(equalTo: descriptionView.rightAnchor, constant: YZConstants.smallMargin),
 
-      priceView.topAnchor.constraint(equalTo: containerMiddleView.topAnchor, constant: Constants.smallMargin),
+      priceView.topAnchor.constraint(equalTo: containerMiddleView.topAnchor, constant: YZConstants.smallMargin),
       priceView.leftAnchor.constraint(equalTo: containerMiddleView.leftAnchor),
       priceView.rightAnchor.constraint(equalTo: containerMiddleView.rightAnchor),
 
-      unitPriceLabel.topAnchor.constraint(equalTo: priceView.bottomAnchor, constant: Constants.smallMargin),
+      unitPriceLabel.topAnchor.constraint(equalTo: priceView.bottomAnchor, constant: YZConstants.smallMargin),
       unitPriceLabel.leftAnchor.constraint(equalTo: containerMiddleView.leftAnchor),
       unitPriceLabel.rightAnchor.constraint(equalTo: containerMiddleView.rightAnchor),
 
       containerRightView.topAnchor.constraint(equalTo: containerView.topAnchor),
       containerRightView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-      containerRightView.leftAnchor.constraint(equalTo: containerMiddleView.rightAnchor, constant: Constants.smallMargin),
+      containerRightView.leftAnchor.constraint(equalTo: containerMiddleView.rightAnchor, constant: YZConstants.smallMargin),
       containerRightView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
 
-      addButton.topAnchor.constraint(equalTo: containerRightView.topAnchor, constant: Constants.smallMargin),
+      addButton.topAnchor.constraint(equalTo: containerRightView.topAnchor, constant: YZConstants.smallMargin),
       addButton.leftAnchor.constraint(equalTo: containerRightView.leftAnchor),
       addButton.rightAnchor.constraint(equalTo: containerRightView.rightAnchor),
-      addButton.widthAnchor.constraint(equalToConstant: Constants.buttonHeight),
+      addButton.widthAnchor.constraint(equalToConstant: YZConstants.buttonHeight),
       addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor)
     ])
   }

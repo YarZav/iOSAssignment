@@ -3,7 +3,7 @@ final class YZCoordinatorFactory: YZCoordinatorFactoryProtocol {
 
   func tabBarCoordinator(
     router: YZRouterProtocol
-  ) -> YZCoordinatorProtocol & YZTabBarCoordinatorOutputProtocol {
+  ) -> YZCoordinatorProtocol {
     YZTabBarCoordinator(router: router)
   }
 }

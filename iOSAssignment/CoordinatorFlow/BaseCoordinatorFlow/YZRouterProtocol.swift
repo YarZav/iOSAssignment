@@ -1,5 +1,3 @@
-import UIKit
-
 /// Protocol to Pop, Push, Dismiss etc. views
 protocol YZRouterProtocol: YZPresenterProtocol {
   // MARK: - Push

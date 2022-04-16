@@ -13,6 +13,9 @@ protocol YZProductListPresenterProtocol {
 
   /// Search models by text
   func search(by text: String)
+
+  /// Sort dispalyed data
+  func didSort(_ isDesc: Bool)
 }
 
 // PRESENTER -> VIEW

@@ -5,7 +5,7 @@ final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWe
 
   private enum Constants {
     static let welcomeImageName = "welcome"
-    static let welcomeText = "welcome"
+    static let welcomeText = NSLocalizedString("WelcomeKey", comment: "")
     static let buttonHeight: CGFloat = 44
     static let buttonInsets: UIEdgeInsets = .init(top: 5, left: 12, bottom: 5, right: 12)
     static let imageSize: CGSize = .init(width: 184, height: 184)

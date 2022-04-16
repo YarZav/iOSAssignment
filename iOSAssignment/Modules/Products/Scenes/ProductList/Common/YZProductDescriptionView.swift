@@ -4,7 +4,7 @@ final class YZProductDescriptionView: UIView {
   // MARK: - Constants
 
   private enum Constants {
-    static let contents: String = "Inhoud:"
+    static let contents: String = (NSLocalizedString("ContentsKey", comment: "") + ":")
   }
 
   // MARK: - Private property
@@ -61,4 +61,3 @@ private extension YZProductDescriptionView {
     ])
   }
 }
-

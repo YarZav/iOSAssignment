@@ -4,8 +4,8 @@ final class YZTabBarViewController: UITabBarController, YZPresenterProtocol {
   // MARK: - Constants
 
   private enum Constants {
-    static let listText = "List"
-    static let cartText = "Cart"
+    static let listText = NSLocalizedString("ListKey", comment: "")
+    static let cartText = NSLocalizedString("CartKey", comment: "")
   }
 
   // MARK: - Internal property

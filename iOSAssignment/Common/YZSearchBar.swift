@@ -9,7 +9,7 @@ final class YZSearchBar: UISearchBar {
   // MARK: - Constants
 
   private enum Constants {
-    static let searchPlacehodler = "Search"
+    static let searchPlacehodler = NSLocalizedString("SearchKey", comment: "")
   }
 
   // MARK: - Internal property

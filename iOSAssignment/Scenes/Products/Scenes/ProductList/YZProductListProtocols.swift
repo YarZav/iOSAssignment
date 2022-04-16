@@ -1,14 +1,23 @@
 // VIEW -> PRESENTER
 protocol YZProductListPresenterProtocol {
+  var products: [YZProduct] { get }
+
   /// Action when view did load
   func viewDidLoad()
+
+  /// Search models by text
+  func search(by text: String)
 }
 
 // PRESENTER -> VIEW
-protocol YZProductListViewProtocol: AnyObject { }
+protocol YZProductListViewProtocol: AnyObject {
+  func reloadData()
+}
 
 // PRESENTER -> MAPPER
-protocol YZProductListMapperProtocol { }
+protocol YZProductListMapperProtocol {
+  func map(from networkModels: Products?) -> [YZProduct]
+}
 
 // INTERACTOR -> PRESENTER
 protocol YZProductListInteractorProtocol {

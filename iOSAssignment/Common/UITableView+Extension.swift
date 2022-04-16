@@ -4,10 +4,10 @@ extension UITableView {
   /// Make UITableView
   ///
   /// - Parameters:
-  ///     - cells: cell which can be displayed
-  ///     - dataSource: UITableViewDataSource, default is nil
-  ///     - delegate: UITableViewDelegate, default is nil
-  ///     - allowsSelection: allows selection cells of not, default is false
+  ///   - cells: cell which can be displayed
+  ///   - dataSource: UITableViewDataSource, default is nil
+  ///   - delegate: UITableViewDelegate, default is nil
+  ///   - allowsSelection: allows selection cells of not, default is false
   convenience init(cells: [AnyClass],
                    dataSource: UITableViewDataSource? = nil,
                    delegate: UITableViewDelegate? = nil,
@@ -31,12 +31,22 @@ extension UITableView {
   /// Get cell for UItableView for IndexPath
   ///
   /// - Parameters:
-  ///     - indexPath: index path for cell
+  ///   - indexPath: index path for cell
   func dequeueCell<T: UITableViewCell>(indexPath: IndexPath) -> T {
     let reuseIdentifier = String(describing: T.self)
     guard let cell = self.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? T else {
       fatalError("UITableViewCell fatal error: Cell is not register in table view")
     }
     return cell
+  }
+
+  /// Set bottom insets for content in table
+  ///
+  /// - Parameters:
+  ///   - inset:bottom inset
+  func setBottomInset(_ inset: CGFloat) {
+    let edgeInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+    contentInset = edgeInset
+    scrollIndicatorInsets = edgeInset
   }
 }

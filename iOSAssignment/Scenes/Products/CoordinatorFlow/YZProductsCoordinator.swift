@@ -1,10 +1,19 @@
 import UIKit
 
-final class YZProductsCoordinator: YZBaseCoordinator {
+protocol YZProductsCoordinatorOutput {
+  /// Finished product list coordinator flow
+  var onFinish: (() -> Void)? { get set }
+}
+
+final class YZProductsCoordinator: YZBaseCoordinator & YZProductsCoordinatorOutput {
   // MARK: - Private property
 
   private let factory: YZProductsViewFactoryProtocol
   private let router: YZRouterProtocol
+
+  // MARK: - Internal property
+
+  var onFinish: (() -> Void)?
 
   // MARK: - Init
 
@@ -42,7 +51,10 @@ extension YZProductsCoordinator: YZCoordinatorProtocol {
 
 private extension YZProductsCoordinator {
   func productList() {
-    let tabBar = factory.productList()
-    router.setRoot(tabBar)
+    var productList = factory.productList()
+    productList.onFinish = { [weak self] in
+      self?.onFinish?()
+    }
+    router.setRoot(productList)
   }
 }

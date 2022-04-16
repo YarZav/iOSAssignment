@@ -1,6 +1,12 @@
+// OUTPUT
+protocol YZProductListOutputProtocol {
+  var onFinish: (() -> Void)? { get set }
+}
+
 // VIEW -> PRESENTER
 protocol YZProductListPresenterProtocol {
-  var products: [YZProduct] { get }
+  /// Displayed list of products
+  var displayedProducts: [YZProduct] { get }
 
   /// Action when view did load
   func viewDidLoad()
@@ -11,6 +17,7 @@ protocol YZProductListPresenterProtocol {
 
 // PRESENTER -> VIEW
 protocol YZProductListViewProtocol: AnyObject {
+  /// Reload data in table view
   func reloadData()
 }
 

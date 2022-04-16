@@ -20,6 +20,14 @@ protocol YZRouterProtocol: YZPresenterProtocol {
     completion: YZCompletion?
   )
 
+  // MARK: - Pop
+
+  /// Pop view module with default animation
+  func pop()
+
+  /// Pop view module with animation
+  func pop(animated: Bool)
+
   // MARK: - New stack
 
   /// Set root view module

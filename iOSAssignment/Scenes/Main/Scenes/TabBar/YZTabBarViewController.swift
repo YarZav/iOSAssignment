@@ -1,22 +1,16 @@
 import UIKit
 
 final class YZTabBarViewController: UITabBarController, YZPresenterProtocol {
+  // MARK: - Constants
+
+  private enum Constants {
+    static let listText = "List"
+  }
+
   // MARK: - Internal property
 
-  var presenter: YZTabBarPresenterProtocol
   var productListViewController: UIViewController?
 
-  // MARK: - Init
-
-  init(presenter: YZTabBarPresenterProtocol) {
-    self.presenter = presenter
-    super.init(nibName: nil, bundle: nil)
-  }
-
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
   // MARK: - Life circle
 
   override func viewDidLoad() {
@@ -30,10 +24,6 @@ final class YZTabBarViewController: UITabBarController, YZPresenterProtocol {
   }
 }
 
-// MARK: - YZTabBarViewProtocol
-
-extension YZTabBarViewController: YZTabBarViewProtocol { }
-
 // MARK: - Private
 
 private extension YZTabBarViewController {
@@ -44,8 +34,9 @@ private extension YZTabBarViewController {
   }
 
   func updateUI() {
+    navigationController?.setNavigationBarHidden(true, animated: false)
     if let productListViewController = self.productListViewController {
-      let productListItem = UITabBarItem(title: "List", image: nil, selectedImage: nil)
+      let productListItem = UITabBarItem(title: Constants.listText, image: nil, selectedImage: nil)
       productListViewController.tabBarItem = productListItem
       viewControllers = [productListViewController]
     }

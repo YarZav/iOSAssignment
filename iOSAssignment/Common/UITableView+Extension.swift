@@ -49,4 +49,21 @@ extension UITableView {
     contentInset = edgeInset
     scrollIndicatorInsets = edgeInset
   }
+
+  /// Add table footer view
+  ///
+  /// - Parameters:
+  ///     - view: Table footer view
+  ///     - frame: Table footer frame
+  func addFooterView(_ view: UIView, frame: CGRect) {
+    let width = frame.width
+    let height = frame.height
+
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.heightAnchor.constraint(equalToConstant: height).isActive = true
+    view.widthAnchor.constraint(equalToConstant: width).isActive = true
+
+    tableFooterView = view
+    tableFooterView?.frame = frame
+  }
 }

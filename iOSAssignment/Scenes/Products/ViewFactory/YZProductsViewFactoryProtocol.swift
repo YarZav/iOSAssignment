@@ -2,5 +2,5 @@ protocol YZProductsViewFactoryProtocol {
   /// Displaying view
   ///
   /// - Returns: View
-  func productList() -> YZPresenterProtocol
+  func productList() -> YZPresenterProtocol & YZProductListOutputProtocol
 }

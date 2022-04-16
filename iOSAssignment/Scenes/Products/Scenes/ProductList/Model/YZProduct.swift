@@ -35,6 +35,8 @@ final class YZProduct {
   /// Displayed image
   var image: UIImage?
 
+  // MARK: - Init
+
   init(
     title: String,
     quantity: String,

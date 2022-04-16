@@ -34,15 +34,20 @@ final class YZTabBarCoordinator: YZBaseCoordinator {
 
 extension YZTabBarCoordinator: YZCoordinatorProtocol {
   func start() {
-    tabBar()
+    welcome()
   }
 }
 
 // MARK: - Private
 
 private extension YZTabBarCoordinator {
+  func welcome() {
+    let welcome = factory.welcome { [weak self] in self?.tabBar() }
+    router.setRoot(welcome)
+  }
+
   func tabBar() {
     let tabBar = factory.tabBar(productListCoordinatorFlow: productListCoordinatorFlow)
-    router.setRoot(tabBar)
+    router.setRoot(tabBar, hideBar: true)
   }
 }

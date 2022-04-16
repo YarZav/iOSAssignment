@@ -6,6 +6,7 @@ final class AppDelegate: UIResponder {
 
   private lazy var coordinatorFlow: YZCoordinatorFlow = {
     let navigationController = UINavigationController()
+    navigationController.navigationBar.tintColor = .black
     let router = YZRouter(rootController: navigationController)
     let coordinatorFlow = YZCoordinatorFlow(router: router)
     coordinatorFlow.start()

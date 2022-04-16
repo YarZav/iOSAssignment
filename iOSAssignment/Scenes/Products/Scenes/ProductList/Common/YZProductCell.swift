@@ -20,12 +20,14 @@ final class YZProductCell: UITableViewCell {
   private lazy var unitPriceLabel = UILabel.make(with: 13, textColor: .systemGray, textAlignment: .right)
 
   private lazy var addButton: UIButton = {
-    let button = UIButton()
-    let image = Constants.plusImage?.colored(.white)
-    button.setImage(image, for: .normal)
-    button.backgroundColor = .systemGreen
-    button.layer.cornerRadius = Constants.buttonHeight / 2.0
-    return button
+   UIButton.make(
+      image: Constants.plusImage?.colored(.white),
+      cornerRadius: Constants.buttonHeight / 2.0,
+      borderColor: .systemGreen,
+      backgroundColor: .systemGreen,
+      target: nil,
+      action: nil
+    )
   }()
 
   // MARK: - Internal property

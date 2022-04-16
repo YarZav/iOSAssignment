@@ -8,7 +8,7 @@ final class YZProductCell: UITableViewCell {
     static let smallMargin: CGFloat = 8
     static let defaultMargin: CGFloat = 20
     static let buttonHeight: CGFloat = 44
-    static let plusImage = UIImage(systemName: "plus")
+    static let plusImageName = "plus"
   }
 
   // MARK: - Private property
@@ -20,13 +20,11 @@ final class YZProductCell: UITableViewCell {
   private lazy var unitPriceLabel = UILabel.make(with: 13, textColor: .systemGray, textAlignment: .right)
 
   private lazy var addButton: UIButton = {
-   UIButton.make(
-      image: Constants.plusImage?.colored(.white),
+    UIButton.make(
       cornerRadius: Constants.buttonHeight / 2.0,
-      borderColor: .systemGreen,
+      image: UIImage(systemName: Constants.plusImageName)?.colored(.white),
       backgroundColor: .systemGreen,
-      target: nil,
-      action: nil
+      highlightedColor: .green
     )
   }()
 

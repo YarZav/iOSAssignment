@@ -3,11 +3,12 @@ final class YZProductListPresenter {
 
   private let interactor: YZProductListInteractorProtocol
   private let mapper: YZProductListMapperProtocol
+  private var products: [YZProduct] = []
 
   // MARK: - Internal property
 
   weak var view: YZProductListViewProtocol?
-  var products: [YZProduct] = []
+  var displayedProducts: [YZProduct] = []
 
   // MARK: - Init
 
@@ -31,10 +32,16 @@ extension YZProductListPresenter: YZProductListPresenterProtocol {
   func viewDidLoad() {
     let networkModel = interactor.fetchProducts()
     products = mapper.map(from: networkModel)
+    displayedProducts = mapper.map(from: networkModel)
     view?.reloadData()
   }
 
   func search(by text: String) {
-    
+    if text.isEmpty {
+      displayedProducts = products
+    } else {
+      displayedProducts = products.filter { $0.title.lowercased().contains(text.lowercased()) }
+    }
+    view?.reloadData()
   }
 }

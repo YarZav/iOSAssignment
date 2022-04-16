@@ -11,6 +11,11 @@ final class YZTabBarCoordinator: YZBaseCoordinator {
     let router = YZRouter(rootController: navigationController)
     let coordinatorFlow = YZProductsCoordinator(router: router)
     coordinatorFlow.start()
+    addDependency(coordinatorFlow)
+    coordinatorFlow.onFinish = { [weak self] in
+      self?.router.pop()
+      self?.removeDependency(coordinatorFlow)
+    }
     return coordinatorFlow
   }()
 
@@ -48,6 +53,6 @@ private extension YZTabBarCoordinator {
 
   func tabBar() {
     let tabBar = factory.tabBar(productListCoordinatorFlow: productListCoordinatorFlow)
-    router.setRoot(tabBar, hideBar: true)
+    router.push(tabBar, animated: true)
   }
 }

@@ -4,23 +4,35 @@ final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWe
   // MARK: - Constants
 
   private enum Constants {
+    static let welcomeImageName = "welcome"
     static let welcomeText = "welcome"
     static let buttonHeight: CGFloat = 44
+    static let buttonInsets: UIEdgeInsets = .init(top: 5, left: 12, bottom: 5, right: 12)
+    static let imageSize: CGSize = .init(width: 184, height: 184)
   }
 
   // MARK: - Private property
 
+  private lazy var welcomeImageView: UIImageView = {
+    let imageView = UIImageView(image: UIImage(named: Constants.welcomeImageName))
+    imageView.contentMode = .scaleAspectFit
+    imageView.clipsToBounds = true
+    return imageView
+  }()
+
   private lazy var welcomeButton: UIButton = {
     let button = UIButton.make(
-      title: Constants.welcomeText,
       cornerRadius: Constants.buttonHeight / 2,
+      title: Constants.welcomeText,
       borderColor: .black,
+      borderWidth: 1,
       backgroundColor: .white,
+      highlightedColor: .systemYellow,
       target: self,
       action: #selector(onWelcome)
     )
     button.setTitleColor(.black, for: .normal)
-    button.contentEdgeInsets = .init(top: 5, left: 12, bottom: 5, right: 12)
+    button.contentEdgeInsets = Constants.buttonInsets
     return button
   }()
 
@@ -50,17 +62,35 @@ final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWe
 
 private extension YZWelcomeViewController {
   func createUI() {
-    view.backgroundColor = .systemBackground
     title = ""
+    view.backgroundColor = .systemBackground
 
-    view.addSubview(welcomeButton)
+    let containerView = UIView()
 
+    view.addSubview(containerView)
+    containerView.addSubview(welcomeImageView)
+    containerView.addSubview(welcomeButton)
+
+    containerView.translatesAutoresizingMaskIntoConstraints = false
+    welcomeImageView.translatesAutoresizingMaskIntoConstraints = false
     welcomeButton.translatesAutoresizingMaskIntoConstraints = false
 
     NSLayoutConstraint.activate([
-      welcomeButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      welcomeButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-      welcomeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
+      containerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      containerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+      containerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+      containerView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+
+      welcomeImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+      welcomeImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+      welcomeImageView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+      welcomeImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize.height),
+      welcomeImageView.widthAnchor.constraint(equalToConstant: Constants.imageSize.width),
+
+      welcomeButton.topAnchor.constraint(equalTo: welcomeImageView.bottomAnchor),
+      welcomeButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+      welcomeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+      welcomeButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
     ])
   }
 }

@@ -74,6 +74,16 @@ extension YZRouter: YZRouterProtocol {
     rootController?.pushViewController(controller, animated: animated)
   }
 
+  // MARK: - Pop
+
+  func pop() {
+    pop(animated: true)
+  }
+
+  func pop(animated: Bool) {
+    rootController?.popViewController(animated: animated)
+  }
+
   // MARK: - New stack
 
   public func setRoot(_ module: YZPresenterProtocol?) {

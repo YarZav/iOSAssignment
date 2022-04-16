@@ -1,6 +1,14 @@
 import UIKit
 
-final class YZProductListViewController: UIViewController, YZPresenterProtocol {
+final class YZProductListViewController: UIViewController, YZPresenterProtocol, YZProductListOutputProtocol {
+  // MARK: - Constants
+
+  private enum Constants {
+    static let backImageName = "chevron.backward"
+    static let searchPlacehodler = "Search"
+    static let welcomeImageName = "welcome"
+  }
+
   // MARK: - Private property
 
   private lazy var searchBar: UISearchBar = {
@@ -8,7 +16,15 @@ final class YZProductListViewController: UIViewController, YZPresenterProtocol {
     searchBar.sizeToFit()
     searchBar.tintColor = .black
     searchBar.delegate = self
+    searchBar.placeholder = Constants.searchPlacehodler
     return searchBar
+  }()
+
+  private lazy var emptyImageView: UIImageView = {
+    let imageView = UIImageView(image: UIImage(named: Constants.welcomeImageName))
+    imageView.contentMode = .scaleAspectFit
+    imageView.clipsToBounds = true
+    return imageView
   }()
 
   private lazy var tableView: UITableView = {
@@ -23,6 +39,7 @@ final class YZProductListViewController: UIViewController, YZPresenterProtocol {
   // MARK: - Internal property
 
   var presenter: YZProductListPresenterProtocol
+  var onFinish: (() -> Void)?
 
   // MARK: - Init
 
@@ -87,7 +104,15 @@ extension YZProductListViewController {
 
 extension YZProductListViewController: YZProductListViewProtocol {
   func reloadData() {
+    tableView.tableFooterView = nil
     tableView.reloadData()
+    if presenter.displayedProducts.isEmpty {
+      let height = view.bounds.height
+      let frame: CGRect = .init(x: 0, y: height / 10, width: view.bounds.width, height: height / 3)
+      tableView.addFooterView(emptyImageView, frame: frame)
+    } else {
+      tableView.addFooterView(UIView(), frame: .zero)
+    }
   }
 }
 
@@ -95,8 +120,9 @@ extension YZProductListViewController: YZProductListViewProtocol {
 
 private extension YZProductListViewController {
   func createUI() {
-    navigationItem.titleView = searchBar
+    backButton()
 
+    navigationItem.titleView = searchBar
     view.addSubview(tableView)
 
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +134,17 @@ private extension YZProductListViewController {
       tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
     ])
   }
+
+  func backButton() {
+    let backButton = UIBarButtonItem(
+      image: UIImage(systemName: Constants.backImageName),
+      style: .plain,
+      target: self,
+      action: #selector(onBack)
+    )
+    backButton.tintColor = .black
+    navigationItem.leftBarButtonItem = backButton
+  }
 }
 
 // MARK: - UISearchBarDelegate
@@ -117,7 +154,9 @@ extension YZProductListViewController: UISearchBarDelegate {
     searchBar.showsCancelButton = true
   }
 
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { }
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    presenter.search(by: searchText)
+  }
 
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
@@ -126,16 +165,25 @@ extension YZProductListViewController: UISearchBarDelegate {
   }
 }
 
+// MARK: - Action
+
+private extension YZProductListViewController {
+  @objc
+  func onBack() {
+    onFinish?()
+  }
+}
+
 // MARK: - UITableViewDataSource
 
 extension YZProductListViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    presenter.products.count
+    presenter.displayedProducts.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell: YZProductCell = tableView.dequeueCell(indexPath: indexPath)
-    cell.product = presenter.products[indexPath.row]
+    cell.product = presenter.displayedProducts[indexPath.row]
     return cell
   }
 }

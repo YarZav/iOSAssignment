@@ -3,7 +3,7 @@ protocol YZCoordinatorFactoryProtocol {
   ///
   /// - Parameters:
   ///     - router:  Router for moving in stack of views
-  func tabBarCoordinator(
+  func mainCoordinator(
     router: YZRouterProtocol
   ) -> YZCoordinatorProtocol
 }

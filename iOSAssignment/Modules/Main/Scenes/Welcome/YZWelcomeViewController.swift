@@ -6,7 +6,6 @@ final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWe
   private enum Constants {
     static let welcomeImageName = "welcome"
     static let welcomeText = NSLocalizedString("WelcomeKey", comment: "")
-    static let buttonHeight: CGFloat = 44
     static let buttonInsets: UIEdgeInsets = .init(top: 5, left: 12, bottom: 5, right: 12)
     static let imageSize: CGSize = .init(width: 184, height: 184)
   }
@@ -17,12 +16,8 @@ final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWe
 
   private lazy var welcomeButton: UIButton = {
     let button = UIButton.make(
-      cornerRadius: Constants.buttonHeight / 2,
+      cornerRadius: YZConstants.buttonHeight / 2,
       title: Constants.welcomeText,
-      borderColor: .black,
-      borderWidth: 1,
-      backgroundColor: .white,
-      highlightedColor: .systemYellow,
       target: self,
       action: #selector(onWelcome)
     )
@@ -82,7 +77,7 @@ private extension YZWelcomeViewController {
 
       welcomeButton.topAnchor.constraint(equalTo: welcomeImageView.bottomAnchor),
       welcomeButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-      welcomeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+      welcomeButton.heightAnchor.constraint(equalToConstant: YZConstants.buttonHeight),
       welcomeButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
     ])
   }

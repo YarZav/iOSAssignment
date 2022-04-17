@@ -17,10 +17,10 @@ extension UIButton {
     cornerRadius: CGFloat,
     title: String? = nil,
     image: UIImage? = nil,
-    borderColor: UIColor? = nil,
-    borderWidth: CGFloat = 0,
-    backgroundColor: UIColor,
-    highlightedColor: UIColor,
+    borderColor: UIColor? = .black,
+    borderWidth: CGFloat = 1,
+    backgroundColor: UIColor = .white,
+    highlightedColor: UIColor = .systemYellow,
     target: Any? = nil,
     action: Selector? = nil
   ) -> UIButton {

@@ -1,9 +1,9 @@
 final class YZCoordinatorFactory: YZCoordinatorFactoryProtocol {
   // MARK: - YZCoordinatorFactoryProtocol
 
-  func tabBarCoordinator(
+  func mainCoordinator(
     router: YZRouterProtocol
   ) -> YZCoordinatorProtocol {
-    YZTabBarCoordinator(router: router)
+    YZMainCoordinator(router: router)
   }
 }

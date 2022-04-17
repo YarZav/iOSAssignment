@@ -28,7 +28,7 @@ final class YZCoordinatorFlow: YZBaseCoordinator {
 extension YZCoordinatorFlow: YZCoordinatorProtocol {
   func start() {
     childCoordinators.forEach { removeDependency($0) }
-    startTabBarCoordinator()
+    startMainCoordinator()
   }
 }
 
@@ -43,9 +43,9 @@ extension YZCoordinatorFlow {
 // MARK: - Private
 
 private extension YZCoordinatorFlow {
-  func startTabBarCoordinator() {
-    let tabBarCoordinator = factory.tabBarCoordinator(router: router)
-    addDependency(tabBarCoordinator)
-    tabBarCoordinator.start()
+  func startMainCoordinator() {
+    let mainCoordinator = factory.mainCoordinator(router: router)
+    addDependency(mainCoordinator)
+    mainCoordinator.start()
   }
 }

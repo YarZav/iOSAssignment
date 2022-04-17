@@ -18,8 +18,8 @@ final class YZProductHeaderView: UIView {
 
   private var isDesc: Bool = false
 
-  private lazy var titleLabel = UILabel.make(with: 15)
-  private lazy var sortButton = UIButton.make(
+  private lazy var titleLabel = UILabel.plain(with: 15)
+  private lazy var sortButton = UIButton.plain(
     cornerRadius: YZConstants.buttonHeight / 4,
     image: UIImage(systemName: Constants.sortImageName)?.colored(.black)?.resized(Constants.sortImageSize),
     target: self,

@@ -1,7 +1,4 @@
-import Foundation
-
 protocol YZCoreDataModelIdentifiable {
-
   /// DataBase model identifier
   var id: String { get set }
 

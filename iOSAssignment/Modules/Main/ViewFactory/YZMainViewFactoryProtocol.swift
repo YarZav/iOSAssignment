@@ -4,7 +4,7 @@ protocol YZMainViewFactoryProtocol {
   /// - Parameters:
   ///   - onFinish: Tapped on moved in the next view
   /// - Returns: View
-  func welcome(_ onFinish: (() -> Void)?) -> YZPresenterProtocol & YZWelcomeOutputProtocol
+  func welcome(_ onFinish: (() -> Void)?) -> YZPresenterProtocol & YZProductOutpoutProtocol
 
   /// Displaying view with TabBar
   ///

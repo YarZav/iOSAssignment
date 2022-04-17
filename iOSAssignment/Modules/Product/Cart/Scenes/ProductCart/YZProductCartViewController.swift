@@ -56,7 +56,7 @@ private extension YZProductCartViewController {
 
 private extension YZProductCartViewController {
   func createUI() {
-    navigationItem.leftBarButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(onBack))
+    navigationItem.leftBarButtonItem = UIBarButtonItem.back(target: self, action: #selector(onBack))
 
     tableView.delegate = self
 

@@ -13,7 +13,7 @@ extension UIButton {
   ///   - highlightedColor: Highlighted color button
   ///   - target: Action target for touch up inside
   ///   - action: Action
-  static func make(
+  static func plain(
     cornerRadius: CGFloat,
     title: String? = nil,
     image: UIImage? = nil,

@@ -6,7 +6,7 @@ extension UIBarButtonItem {
   /// - Parameters:
   ///   - target: Target of action
   ///   - action: Action for tap
-  static func backButton(
+  static func back(
     target: Any,
     action: Selector
   ) -> UIBarButtonItem {

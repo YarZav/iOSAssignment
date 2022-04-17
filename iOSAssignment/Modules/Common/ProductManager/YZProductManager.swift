@@ -13,7 +13,7 @@ final class YZProductManager {
 
   private let observers = NSPointerArray.weakObjects()
 
-  // MARK: - Internal property
+  // MARK: - Singleton
 
   static let shared = YZProductManager()
 

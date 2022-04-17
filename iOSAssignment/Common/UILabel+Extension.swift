@@ -1,14 +1,7 @@
-//
-//  UILabel+Extension.swift
-//  iOSAssignment
-//
-//  Created by 19205313 on 16.04.2022.
-//
-
 import UIKit
 
 extension UILabel {
-  /// Make UILabel
+  /// Make plain UILabel
   ///
   /// - Parameters:
   ///   - textSize: text font size
@@ -16,7 +9,7 @@ extension UILabel {
   ///   - numberOfLines: MAX number of lines in text
   ///   - textColor: text color
   ///   - textAlignment: text alignment (left, middle, right)
-  static func make(
+  static func plain(
     with textSize: CGFloat,
     isBold: Bool = false,
     numberOfLines: Int = 1,

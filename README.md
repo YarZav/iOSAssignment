@@ -34,3 +34,20 @@ Create an iOS application for browsing the Jumbo list of available products. To 
 
 ![Simulator Screen Shot - iPhone 8 - 2021-09-28 at 16 19 08](https://user-images.githubusercontent.com/55485534/135105894-52b5d465-eec1-4a40-80ee-8f63eed45915.png)
 
+
+# Build and Run
+
+## Install 
+
+- Xcode
+- Brew (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+- brew install xcodegen
+- sudo gem install cocoapods
+
+## Build 
+- xcodegen generate
+- pod install
+
+## Build 
+- open *.xcworkspace via Xcode
+- tap CMD+R

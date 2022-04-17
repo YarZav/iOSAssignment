@@ -9,8 +9,8 @@ final class YZProductDescriptionView: UIView {
 
   // MARK: - Private property
 
-  private lazy var titleLabel = UILabel.make(with: 15, numberOfLines: 2)
-  private lazy var quantityLabel = UILabel.make(with: 13, textColor: .systemGray)
+  private lazy var titleLabel = UILabel.plain(with: 15, numberOfLines: 2)
+  private lazy var quantityLabel = UILabel.plain(with: 13, textColor: .systemGray)
 
   // MARK: - Internal
 

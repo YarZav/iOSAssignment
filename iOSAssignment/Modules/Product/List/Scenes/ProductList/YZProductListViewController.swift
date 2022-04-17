@@ -52,7 +52,7 @@ extension YZProductListViewController: YZProductListViewProtocol {
 
 private extension YZProductListViewController {
   func createUI() {
-    navigationItem.leftBarButtonItem = UIBarButtonItem.backButton(target: self, action: #selector(onBack))
+    navigationItem.leftBarButtonItem = UIBarButtonItem.back(target: self, action: #selector(onBack))
     navigationItem.titleView = searchBar
 
     keyboardManager.delegate = self

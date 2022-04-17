@@ -19,10 +19,10 @@ final class YZProductCell: UITableViewCell {
   private lazy var productImageView = YZProductImageView()
   private lazy var descriptionView = YZProductDescriptionView()
   private lazy var priceView = YZPProductPriceView()
-  private lazy var unitPriceLabel = UILabel.make(with: 13, textColor: .systemGray, textAlignment: .right)
+  private lazy var unitPriceLabel = UILabel.plain(with: 13, textColor: .systemGray, textAlignment: .right)
 
   private lazy var button: UIButton = {
-    UIButton.make(
+    UIButton.plain(
       cornerRadius: YZConstants.buttonHeight / 2.0,
       borderColor: .clear,
       backgroundColor: .systemGreen,

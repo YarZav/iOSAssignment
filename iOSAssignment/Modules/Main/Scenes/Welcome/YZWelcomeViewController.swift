@@ -1,6 +1,6 @@
 import UIKit
 
-final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWelcomeOutputProtocol {
+final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZProductOutpoutProtocol {
   // MARK: - Constants
 
   private enum Constants {
@@ -15,7 +15,7 @@ final class YZWelcomeViewController: UIViewController, YZPresenterProtocol, YZWe
   private lazy var welcomeImageView = UIImageView.plain(Constants.welcomeImageName)
 
   private lazy var welcomeButton: UIButton = {
-    let button = UIButton.make(
+    let button = UIButton.plain(
       cornerRadius: YZConstants.buttonHeight / 2,
       title: Constants.welcomeText,
       target: self,

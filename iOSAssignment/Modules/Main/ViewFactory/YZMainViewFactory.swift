@@ -1,7 +1,7 @@
 final class YZMainViewFactory: YZMainViewFactoryProtocol {
   // MARK: - YZMainViewFactoryProtocol
 
-  func welcome(_ onFinish: (() -> Void)?) -> YZPresenterProtocol & YZWelcomeOutputProtocol {
+  func welcome(_ onFinish: (() -> Void)?) -> YZPresenterProtocol & YZProductOutpoutProtocol {
     let view = YZWelcomeViewController()
     view.onFinish = onFinish
     return view

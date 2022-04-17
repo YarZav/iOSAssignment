@@ -35,6 +35,10 @@ extension UIImage {
     }
   }
 
+  /// Resized image with new size
+  ///
+  /// - Parameters:
+  ///   - targetSize: New size for image
   func resized(_ targetSize: CGSize) -> UIImage? {
       let widthRatio  = targetSize.width  / size.width
       let heightRatio = targetSize.height / size.height

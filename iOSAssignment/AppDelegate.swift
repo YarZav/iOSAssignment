@@ -2,7 +2,10 @@ import UIKit
 
 @main
 final class AppDelegate: UIResponder {
+  /// App window
   private let window = UIWindow(frame: UIScreen.main.bounds)
+
+  /// App configuration to coordinate into first screen
   private let appConfiguration: YZAppConfigurationProtocol = YZAppConfiguration()
 }
 

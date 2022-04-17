@@ -3,8 +3,8 @@ import UIKit
 final class YZPProductPriceView: UIView {
   // MARK: - Private property
 
-  private lazy var priceIntegerLabel = UILabel.make(with: 19, isBold: true, textAlignment: .right)
-  private lazy var priceFractionalLabel = UILabel.make(with: 13, isBold: true, textAlignment: .right)
+  private lazy var priceIntegerLabel = UILabel.plain(with: 19, isBold: true, textAlignment: .right)
+  private lazy var priceFractionalLabel = UILabel.plain(with: 13, isBold: true, textAlignment: .right)
 
   // MARK: - Internal
 
